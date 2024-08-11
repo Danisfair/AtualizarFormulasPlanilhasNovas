@@ -1,0 +1,34 @@
+Sub SubstituirNomePlanilhaEmFormula()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim formula As String
+    Dim novoNomePlanilha As String
+    Dim nomeAntigoNaFormula As String
+
+    ' Obtém a planilha ativa e seu nome
+    Set ws = ActiveSheet
+    Dim nomePlanilhaAtiva As String
+    nomePlanilhaAtiva = ws.Name
+
+    ' Pede ao usuário para digitar o novo nome da planilha
+    novoNomePlanilha = InputBox("Digite o novo nome da planilha:")
+
+    ' Nome antigo na fórmula (a ser substituído)
+    nomeAntigoNaFormula = InputBox("Digite o nome antigo da planilha na fórmula:")
+
+    ' Define o intervalo de células onde você quer procurar as fórmulas
+    Set rng = ws.UsedRange
+
+    ' Loop para percorrer cada célula do intervalo
+    For Each cell In rng
+        If cell.HasFormula Then
+            formula = cell.formula
+            formula = Replace(formula, nomeAntigoNaFormula, novoNomePlanilha)
+            cell.formula = formula
+        End If
+    Next cell
+
+    MsgBox "Nome da planilha alterado com sucesso!"
+End Sub
+
+
