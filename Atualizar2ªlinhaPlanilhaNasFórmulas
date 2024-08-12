@@ -7,7 +7,7 @@ Sub SubstituirNomePlanilhaEmLinha2()
     Dim nomeAntigoNaFormula As String
 
     ' Obtém a segunda linha da planilha ativa
-    Set rng = ActiveSheet.Rows(2)
+    Set rng = ActiveSheet.Range("2:2")
 
     ' Pede ao usuário para digitar o novo nome da planilha
     novoNomePlanilha = InputBox("Digite o novo nome da planilha:")
