@@ -12,6 +12,11 @@ Sub SubstituirNomePlanilhaEmFormulaSelecionadas()
 
     ' Nome antigo na fórmula (a ser substituído)
     nomeAntigoNaFormula = InputBox("Digite o nome antigo da planilha na fórmula:")
+    ' para não estragar a fórmula, caso não coloque nada.
+    If nomeAntigoNaFormula = "" Then
+    MsgBox ("Insira uma planilha")
+    Exit Sub
+    End If
 
     ' Loop para percorrer cada célula do intervalo selecionado
     For Each cell In rng
