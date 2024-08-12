@@ -1,4 +1,4 @@
-Sub SubstituirNomePlanilhaEmFormulaSelecionadas()
+Sub SubstituirNomePlanilhaEmLinha2()
     Application.ScreenUpdating = False
     Inicio = timer 
     Dim rng As Range
