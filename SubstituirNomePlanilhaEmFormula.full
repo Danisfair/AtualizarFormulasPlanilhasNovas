@@ -1,4 +1,6 @@
 Sub SubstituirNomePlanilhaEmFormula()
+    Application.ScreenUpdating = False
+    Inicio = timer
     Dim ws As Worksheet
     Dim rng As Range
     Dim formula As String
@@ -32,8 +34,10 @@ Sub SubstituirNomePlanilhaEmFormula()
             cell.formula = formula
         End If
     Next cell
-
-    MsgBox "Nome da planilha alterado com sucesso!"
+    Fim = Timer 
+    Tempo = Fim - Inicio
+    Application.ScreenUpdating = True
+    MsgBox "Nome da planilha alterado com sucesso! " & Tempo 
 End Sub
 
 
