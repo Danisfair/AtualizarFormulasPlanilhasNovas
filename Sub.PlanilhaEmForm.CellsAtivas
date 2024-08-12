@@ -1,5 +1,6 @@
 Sub SubstituirNomePlanilhaEmFormulaSelecionadas()
     Application.ScreenUpdating = False
+    Inicio = timer 
     Dim rng As Range
     Dim formula As String
     Dim novoNomePlanilha As String
@@ -27,6 +28,8 @@ Sub SubstituirNomePlanilhaEmFormulaSelecionadas()
             cell.formula = formula
         End If
     Next cell
+Fim = timer 
+Tempo = Fim - Inicio 
 Application.ScreenUpdating = True
     MsgBox "Nome da planilha alterado com sucesso! " & Tempo
 End Sub
