@@ -15,6 +15,11 @@ Sub SubstituirNomePlanilhaEmFormula()
 
     ' Nome antigo na fórmula (a ser substituído)
     nomeAntigoNaFormula = InputBox("Digite o nome antigo da planilha na fórmula:")
+    ' Para não estragar as fórmulas, caso não coloque nada. 
+    If nomeAntigoNaFormula = "" Then
+    MsgBox ("Insira uma planilha")
+    Exit Sub
+    End If
 
     ' Define o intervalo de células onde você quer procurar as fórmulas
     Set rng = ws.UsedRange
