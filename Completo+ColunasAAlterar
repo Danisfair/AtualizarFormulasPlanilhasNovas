@@ -1,0 +1,52 @@
+Sub SubstituirNomePlanilhaEmLinha2()
+    Application.ScreenUpdating = False
+    Inicio = Timer
+    Dim rng As Range
+    Dim formula As String
+    Dim novoNomePlanilha As String
+    Dim nomeAntigoNaFormula As String
+
+    ' Obtém a segunda linha da planilha ativa
+    Set rng = ActiveSheet.Range("2:2")
+
+    ' Pede ao usuário para digitar o novo nome da planilha
+    novoNomePlanilha = InputBox("Digite o novo nome da planilha:")
+
+    ' Nome antigo na fórmula (a ser substituído)
+    nomeAntigoNaFormula = InputBox("Digite o nome antigo da planilha na fórmula:")
+    ' para não estragar a fórmula, caso não coloque nada.
+    If nomeAntigoNaFormula = "" Then
+        MsgBox ("Insira uma planilha")
+        Exit Sub
+    End If
+
+    ' Loop para percorrer cada célula do intervalo selecionado
+    For Each cell In rng
+        If cell.HasFormula Then
+            formula = cell.formula
+            formula = Replace(formula, nomeAntigoNaFormula, novoNomePlanilha)
+            cell.formula = formula
+        End If
+    Next cell
+    Fim = Timer
+    Tempo = Fim - Inicio
+    Application.ScreenUpdating = True
+    MsgBox "Nome da planilha alterado com sucesso! " & Tempo
+End Sub
+Sub AtualizarColunas()
+    Dim col As Variant
+    Dim lastRow As Long
+
+    ' Encontra a última linha preenchida na planilha
+    lastRow = ActiveSheet.Cells(Rows.Count, "A").End(xlUp).Row
+
+    For Each col In Array("I", "K", "L", "M", "N", "O", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD")
+        Range(col & "2").AutoFill Destination:=Range(col & "2:" & col & lastRow)
+    Next col
+End Sub
+
+
+Sub ExecutarFormulas()
+    SubstituirNomePlanilhaEmLinha2
+    AtualizarColunas
+End Sub
